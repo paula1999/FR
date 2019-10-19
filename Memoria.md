@@ -99,6 +99,10 @@ Cuando un cliente inicia una descarga por torrent, los fragmentos del archivo de
 
 Un archivo torrent contiene las URL de distintos trackers y la integridad de los metadatos de todos los fragmentos, además de metadatos adicionales.
 
+<p>
+![Archivo Torrent](./img/archivo_torrent.jpg)
+</p>
+
 # Trackers
 Un **tracker** de BitTorrent es un servidor especial que contiene la información necesaria para que los peers se conecten con otros peers asistiendo la comunicación entre ellos usando el protocolo bitTorrent. Los trackers son el único punto de encuentro al cual los clientes necesitan conectarse para comunicarse o comenzar una descarga.
 
