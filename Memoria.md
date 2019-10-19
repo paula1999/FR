@@ -48,21 +48,21 @@ Existen varios criterios para clasificar las redes P2P, ya sea según el grado d
 
 # BitTorrent
 
-El BitTorrent es un protocolo diseñado para el intercambio de archivos peer-to-peer en Internet. Lo más destacable es que se puede hacer transferencias de archivos grandes.
+El **BitTorrent** es un protocolo diseñado para el intercambio de archivos peer-to-peer en Internet. Lo más destacable es que se puede hacer transferencias de archivos grandes.
 
-Este protocolo fue diseñado por Bram Cohen en 2001 y existen clientes BitTorrent en varios sistemas operativos. Con respecto a los usuarios, hay que destacar que más de 170 millones de personas usan su producto cada mes. Además, este protocolo mueve hasta el 40% del tráfico mundial de Internet diariamente. BitTorrent también ha lanzado su propia criptomoneda para mejorar la velocidad de la red y así descargar torrents más rápidos.
+Este protocolo fue diseñado por Bram Cohen en 2001 y existen clientes BitTorrent en varios sistemas operativos. Con respecto a los usuarios, hay que destacar que más de 170 millones de personas usan su producto cada mes. Además, este protocolo mueve hasta el 40% del tráfico mundial de Internet diariamente. BitTorrent también ha lanzado su propia **criptomoneda** para mejorar la velocidad de la red y así descargar torrents más rápidos.
 
-El BitTorrent consiste en que los usuarios se unan entre ellos en un "enjambre" para descargar y subir el archivo de forma simultánea. Para subir un archivo, primero hay que crear un archivo torrent y distribuirlo. Después el archivo está disponible en la red a través de un nodo BitTorrent que actúa como semilla. Si queremos descargarlo, obtendremos el archivo torrent y creamos otro nodo BitTorrent que actúa como cliente, intercambiando partes del archivo con la semilla y con otros clientes. Si un archivo se está distribuyendo, se divide en pequeñas partes y cada usuario recibe una parte nueva del archivo, que puede compartirla con otros usuarios. Luego la semilla original se libera de tener que enviar una copia de esta parte a todos los usuarios.
+El BitTorrent consiste en que los usuarios se unan entre ellos en un "enjambre" para descargar y subir el archivo de forma simultánea. Para subir un archivo, primero hay que crear un archivo **torrent** y distribuirlo. Después el archivo está disponible en la red a través de un nodo BitTorrent que actúa como semilla. Si queremos descargarlo, obtendremos el archivo torrent y creamos otro nodo BitTorrent que actúa como cliente, intercambiando partes del archivo con la semilla y con otros clientes. Si un archivo se está distribuyendo, se divide en pequeñas partes y cada usuario recibe una parte nueva del archivo, que puede compartirla con otros usuarios. Luego la semilla original se libera de tener que enviar una copia de esta parte a todos los usuarios.
 
 Cuando un usuario descarga un archivo, no se descargan las partes de dicho archivo secuencialmente, sino que BitTorrent las reordena y comprueba que partes se han descargado y cuáles no. Cada parte del archivo tiene el mismo tamaño y se transmiten de una sola vez, por lo que podemos detener la descarga y reanudarla en otro momento sin perder información. Esta característica hace que BitTorrent sea muy útil para la transferencia de archivos grandes. Cuando ya se ha descargado el archivo, el cliente se convierte en una semilla.
 
-Con respecto a seguridad, cada parte del archivo está protegida por un hash criptográfico, por lo que si se produce alguna modificación (bien o mal intencionada) se puede detectar. Es posible gracias al nodo que tiene el archivo torrent auténtico, luego se puede comparar con este para verificar que no ha habido alguna modificación.
+Con respecto a **seguridad**, cada parte del archivo está protegida por un hash criptográfico, por lo que si se produce alguna modificación (bien o mal intencionada) se puede detectar. Es posible gracias al nodo que tiene el archivo torrent auténtico, luego se puede comparar con este para verificar que no ha habido alguna modificación.
 
 Gracias al diseño de este protocolo, el distribuidor original puede reducir los costes de hardware y de ancho de banda. También proporciona redundancia ante posibles problemas del sistema, reduce las dependencias con el distribuidor original y proporciona fuentes de descarga transitorias.
 
 # Programas clientes
 
-Hay dos tipos distintos de clientes:
+Estos programas sirven para abrir el archivo `.torrent` y así descargar la información que contiene. Hay dos tipos distintos de clientes:
 
 - **Múltiples descargas simultáneas**: Vuze, BitComet, KTorrent, $\mu$Torrent, Transmission...
 - **Descarga única**: se descarga un solo archivo .torrent, pero puede haber varios abiertos simultáneamente. Por ejemplo: BitTornado, navegador Opera...
@@ -80,8 +80,18 @@ Una red en BitTorrent está formada por:
 
 # Mecánica del funcionamiento de BitTorrent
 
+En este apartado veremos cómo un usuario se descarga un archivo usando BitTorrent.
+
+Primero, un usuario se descarga un archivo `.torrent` que contiene la información del fichero que queremos descargar. Dicho archivo contiene la dirección del Tracker al que nos tenemos que conectar para unirnos al enjambre de Peers.
+
+Lo siguiente es abrir el archivo `.torrent` con uno de los **programas cliente** que vimos anteriormente y así interpreta la información.
+
+Después, el Tracker y el Peer se comunican mediante una conexión HTTP. El Tracker informa de la lista de todos los Peers y Seeders que contienen partes del archivo que queremos descargar. El tracker se actualiza con la información del nuevo Peer que acaba de ingresar.
+
+Por último, cuando el Peer sabe dónde tiene que buscar las partes necesarias, se comunica con otros mediante sockets TCP o UDP y el archivo comienza a descargarse. Cada parte descargada se comparte con otros Peers.
+
 # Archivos Torrent
-Los **archivos torrent** almacenan metadatos sobre archivos y carpetas que se van a distribuir y ser usadaos por un cliente de BitTorrent.
+Los **archivos torrent** almacenan metadatos sobre archivos y carpetas que se van a distribuir y ser usados por un cliente de BitTorrent.
 
 Un **torrent** es información acerca de un archivo de destino, aunque no contiene información acerca del contenido del mismo. Funcionan dividiendo el archivo de destino en pequeños fragmentos de información localizados en hosts diferentes. Así, los torrents son capaces de descargar archivos grandes rápidamente.
 
@@ -107,5 +117,4 @@ Los trackers se dividen en dos clases:
 - [https://en.wikipedia.org/wiki/Peer-to-peer](https://en.wikipedia.org/wiki/Peer-to-peer)
 - [https://es.wikipedia.org/wiki/Archivo_Torrent](https://es.wikipedia.org/wiki/Archivo_Torrent)
 - [https://es.wikipedia.org/wiki/Tracker_(BitTorrent)](https://es.wikipedia.org/wiki/Tracker_(BitTorrent))
-
-
+- [https://es.wikipedia.org/wiki/BitTorrent](https://es.wikipedia.org/wiki/BitTorrent)
