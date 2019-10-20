@@ -10,6 +10,8 @@ Además, las conexiones P2P aprovechan, administran y optimizan el uso del ancho
 
 ## Aplicaciones
 
+La red P2P tiene las siguientes aplicaciones:
+
 - Compartir, intercambiar y buscar archivos de cualquier tipo.
 - Telefonía VoIP para hacer más eficiente la transmisión de datos en tiempo real, como Skype.
 - Sistemas de ficheros distribuidos, como CFS o Freenet.
@@ -20,31 +22,34 @@ Además, las conexiones P2P aprovechan, administran y optimizan el uso del ancho
 
 ## Características
 
-- **Escalabilidad**: Lo deseable es que cuantos más nodos estén conectados a una red P2P, mejor será su funcionamiento. Así, cuando los nodos se conectan y comparten sus propios recursos, los recursos totales del sistema P2P aumentan, lo cual difiere del diseño tradicional de cliente-servidor.
+Las características de la red P2P son numerosas:
+
+- **Escalabilidad**: lo deseable es que cuantos más nodos estén conectados a una red P2P, mejor será su funcionamiento. Así, cuando los nodos se conectan y comparten sus propios recursos, los recursos totales del sistema P2P aumentan, lo cual difiere del diseño tradicional de cliente-servidor.
 - **Robustez**: Al ser distribuidas las redes P2P incrementan la robustez en caso de fallos  en la réplica de datos a varios destinos.
-- **Descentralización**: Son descentralizadas por definición y no existen nodos especiales o distintos de otros, por ello ningún nodo es indispensable para que la red funcione.
-- **Distribución de costes entre los usuarios**: Se comparten recursos a cambio de recursos.
-- **Anonimato**: Es deseable que quede anónimo el creador o autor del contenido, así como el editor, lector, servidor donde se encuentra y la petición para encontrarlo, siempre que los usuarios lo requieran.
-- **Seguridad**: Sería conveniente poder identificar y evitar los nodos maliciosos, contenido infectado, espionaje de comunicaciones entre nodos, protección de recursos en la red... Esta característica es la menos implementada y tiene aún varios mecanismos en desarrollo, como cifrado multiclave.
+- **Descentralización**: son descentralizadas por definición y no existen nodos especiales o distintos de otros, por ello ningún nodo es indispensable para que la red funcione.
+- **Distribución de costes entre los usuarios**: se comparten recursos a cambio de recursos.
+- **Anonimato**: es deseable que quede anónimo el creador o autor del contenido, así como el editor, lector, servidor donde se encuentra y la petición para encontrarlo, siempre que los usuarios lo requieran.
+- **Seguridad**: sería conveniente poder identificar y evitar los nodos maliciosos, contenido infectado, espionaje de comunicaciones entre nodos, protección de recursos en la red... Esta característica es la menos implementada y tiene aún varios mecanismos en desarrollo, como cifrado multiclave.
 
 ## Problemas
 Tenemos dos problemas principales:
-- **Cómo encontrar un nodo conectado**: Se suele solucionar haciendo una conexión a un servidor, que mantiene una lista de las IPs conectadas.
-- **Cómo conectar dos nodos sin dirección IP pública**: Los nodos se conectan a través de otro nodo que funciona como proxy. Cualquier nodo con IP pública puede ser escogido como proxy.
+
+- **Cómo encontrar un nodo conectado**: se suele solucionar haciendo una conexión a un servidor, que mantiene una lista de las IPs conectadas.
+- **Cómo conectar dos nodos sin dirección IP pública**: los nodos se conectan a través de otro nodo que funciona como proxy. Cualquier nodo con IP pública puede ser escogido como proxy.
 
 ## Clasificación
 Existen varios criterios para clasificar las redes P2P, ya sea según el grado de centralización, su estructuración, generación a la que pertenezcan, grado de protección de nuestra identidad y enrutamiento y descubrimiento de recursos.
 
 ### Criterio de clasificación según grado de centralización:
-- **Centralizadas**: Se basa en una arquitectura monolítica en la que todas las transacciones se hacen a través de un único servidor que sirve de enlace entre dos nodos y almacena y distribuye los nodos donde se almacenan contenidos.
-- **Mixtas**: Hay interacción entre un servidor central que administra los recursos de banda ancha, enrutamiento y comunicación entre nodos, pero sin saber la identidad de cada nodo ni almacenar información.
-- **Puras**: Son las más comunes, no requiere usar un servidor central, por lo que se opta por los mismos usuarios como nodos de esas conexiones y almacenadores de  la información. Todas las comunicaciones son directamente de usuario a usuario con ayuda de otro nodo (otro usuario).
+- **Centralizadas**: se basa en una arquitectura monolítica en la que todas las transacciones se hacen a través de un único servidor que sirve de enlace entre dos nodos y almacena y distribuye los nodos donde se almacenan contenidos.
+- **Mixtas**: hay interacción entre un servidor central que administra los recursos de banda ancha, enrutamiento y comunicación entre nodos, pero sin saber la identidad de cada nodo ni almacenar información.
+- **Puras**: son las más comunes, no requiere usar un servidor central, por lo que se opta por los mismos usuarios como nodos de esas conexiones y almacenadores de  la información. Todas las comunicaciones son directamente de usuario a usuario con ayuda de otro nodo (otro usuario).
 
 ### Criterio de clasificación según grado de anonimato
 - **Sin características de anonimato**.
 - **Pseudónimo**.
-- **Red P2P Privada**: Solo IPs de confianza pueden conectarse.
-- **Frient-to-friend**: Solo te conectas con "amigos", solo admite direcciones IP donde confías.
+- **Red P2P Privada**: solo IPs de confianza pueden conectarse.
+- **Frient-to-friend**: solo te conectas con "amigos", solo admite direcciones IP donde confías.
 
 # BitTorrent
 
@@ -75,20 +80,20 @@ Una red en BitTorrent está formada por:
 - **Leechers**: son los usuarios que están en la red descargando un archivo pero aun no tienen el archivo completo. También pueden ser los usuarios que descargan los archivos pero no los comparten.
 - **Seeders**: son los usuarios de la red que tienen el archivo completo.
 - **Trackers**: es un servidor especial que contiene la información para que los Peers se conecten entre sí. Es útil para localizar a los usuarios que tienen el archivo que se quiere descargar.
-- **Swarm**: son los usuarios que el Tracker busca.
+- **Swarm**: son los usuarios que el tracker busca.
 
 
 # Mecánica del funcionamiento de BitTorrent
 
 En este apartado veremos cómo un usuario se descarga un archivo usando BitTorrent.
 
-Primero, un usuario se descarga un archivo `.torrent` que contiene la información del fichero que queremos descargar. Dicho archivo contiene la dirección del Tracker al que nos tenemos que conectar para unirnos al enjambre de Peers.
+Primero, un usuario se descarga un archivo `.torrent` que contiene la información del fichero que queremos descargar. Dicho archivo contiene la dirección del tracker al que nos tenemos que conectar para unirnos al swarm de peers.
 
 Lo siguiente es abrir el archivo `.torrent` con uno de los **programas cliente** que vimos anteriormente y así interpreta la información.
 
-Después, el Tracker y el Peer se comunican mediante una conexión HTTP. El Tracker informa de la lista de todos los Peers y Seeders que contienen partes del archivo que queremos descargar. El tracker se actualiza con la información del nuevo Peer que acaba de ingresar.
+Después, el tracker y el Peer se comunican mediante una conexión HTTP. El tracker informa de la lista de todos los peers y seeders que contienen partes del archivo que queremos descargar. El tracker se actualiza con la información del nuevo Peer que acaba de ingresar.
 
-Por último, cuando el Peer sabe dónde tiene que buscar las partes necesarias, se comunica con otros mediante sockets TCP o UDP y el archivo comienza a descargarse. Cada parte descargada se comparte con otros Peers.
+Por último, cuando el Peer sabe dónde tiene que buscar las partes necesarias, se comunica con otros mediante sockets TCP o UDP y el archivo comienza a descargarse. Cada parte descargada se comparte con otros peers.
 
 # Archivos Torrent
 Los **archivos torrent** almacenan metadatos sobre archivos y carpetas que se van a distribuir y ser usados por un cliente de BitTorrent.
@@ -108,13 +113,29 @@ Un **tracker** de BitTorrent es un servidor especial que contiene la informació
 
 Los trackers coordinan la comunicación y distribución de datos, mantienen las estadísticas y la información de verificación para cada torrent.
 
-El tracker es el único que sabe dónde se encuentra cada peer dentro de un enjambre, por lo que es indispensable para poder comunicarse con el resto de usuarios, al menos hasta haberse conectado al enjambre.
+El tracker es el único que sabe dónde se encuentra cada peer dentro de un swarm, por lo que es indispensable para poder comunicarse con el resto de usuarios, al menos hasta haberse conectado al swarm.
 
 ## Clases
 Los trackers se dividen en dos clases:
 
-- **Privados**: Requieren que los peers sean usuarios registrados en un sitio web.
-- **Públicos**: Cualquiera puede comunicarse con ellos.
+- **Privados**: requieren que los peers sean usuarios registrados en un sitio web.
+- **Públicos**: cualquiera puede comunicarse con ellos.
+
+# Ventajas
+
+El BitTorrent tiene numerosas ventajas, entre ellas destacan:
+
+- **No se saturan los servidores**: se ahorra ancho de banda ya que no tienen que enviar un archivo a todos los clientes. También se aprovecha el ancho de banda de los usuarios que están descargando el archivo.
+- **Redundancia**: se puede acceder a un archivo aunque el servidor no esté disponible siempre que al menos un peer haya recibido el archivo completo.
+- **Alta disponibilidad a la hora de descargar**: al haber tantos usuarios, podemos descargar sus archivos simultáneamente.
+
+# Problemas
+
+Sin embargo, este protocolo también tiene sus inconvenientes:
+
+- **Errores o trampas**: se pueden producir errores al componer el archivo completo o incluso algunos archivos pueden ser falsos y no tener el contenido que dicen tener.
+- **Dependencia de los peers**: esto ocurre si un usuario al descargar un archivo se desconecta o la velocidad de los usuarios que comparten los archivos está limitada.
+- **Dependencia del tracker**: sin el tracker las transferencias no se podrían hacer.
 
 # Referencias
 - [https://es.wikipedia.org/wiki/Peer-to-peer](https://es.wikipedia.org/wiki/Peer-to-peer)
@@ -122,3 +143,4 @@ Los trackers se dividen en dos clases:
 - [https://es.wikipedia.org/wiki/Archivo_Torrent](https://es.wikipedia.org/wiki/Archivo_Torrent)
 - [https://es.wikipedia.org/wiki/Tracker_(BitTorrent)](https://es.wikipedia.org/wiki/Tracker_(BitTorrent))
 - [https://es.wikipedia.org/wiki/BitTorrent](https://es.wikipedia.org/wiki/BitTorrent)
+- [https://www.xatakamovil.com/conectividad/que-es-y-como-funciona-el-protocolo-bittorrent](https://www.xatakamovil.com/conectividad/que-es-y-como-funciona-el-protocolo-bittorrent)
