@@ -2,7 +2,7 @@
 
 # Peer-to-peer
 
-Una **red peer-to-peer** (P2P) es una red de ordenadores en la que todos o algunos aspectos funcionan sin clientes ni servidores, sino una serie de nodos que son iguales entre sí, esto es, actúan simultáneamente como clientes y servidores entre ellos.
+Una **red peer-to-peer** (P2P) es una red de ordenadores en la que todos o algunos aspectos funcionan sin clientes ni servidores, sino con una serie de nodos que son iguales entre sí, esto es, actúan simultáneamente como clientes y servidores entre ellos.
 
 Las redes P2P permiten el intercambio directo de información entre dos ordenadores interconectados.
 
