@@ -1,8 +1,6 @@
 ---
 marp: true
 
-
----
 title: BitTorrent
 revealOptions:
     transition: 'Fade'
@@ -10,18 +8,22 @@ revealOptions:
 
 
 ---
+<section style="text-align: center;">
 
 # BitTorrent
 
-> Ana Buendía Ruiz-Azuaga
+<section style="text-align: left;">
 
-> Paula Villanueva Núñez
 
-> DGIIM
+Ana Buendía Ruiz-Azuaga
+
+Paula Villanueva Núñez
+
+ DGIIM
 
 ---
 
-## Introducción
+## Índice
 
 - Redes Peer-to-peer.
 - BitTorrent
@@ -30,18 +32,23 @@ revealOptions:
 
 ---
 
-![](./img/peer-network-computers-sharing-670x335.jpg)
+<img src="./img/peer-network-computers-sharing-670x335.jpg" alt="drawing" width="700"/>
 
 ---
 
 ## Peer-to-peer
 
-- Una red **peer-to-peer** (P2P) es una red de ordenadores en la que todos o algunos aspectos funcionan sin clientes ni servidores, sino con una serie de nodos que son iguales entre sí, esto es, actúan simultáneamente como clientes y servidores entre ellos.
-- Aprovechan, administran y optimizan el uso del ancho de banda de los demás usuarios de la red por la conectividad de los mismos, obteniendo así más rendimiento.
+- Una red **P2P** es una red de ordenadores en la que todos o algunos aspectos funcionan sin clientes ni servidores, sino con nodos que son iguales entre sí.
+- Actúan simultáneamente como clientes y servidores entre ellos.
 
 ---
 
-![](./img/p2p.png)
+## Peer-to-peer
+
+- Aprovechan, administran y optimizan el uso del ancho de banda de los usuarios de la red por la conectividad de los mismos, obteniendo así más rendimiento.
+
+
+<img src="img/p2p.png" alt="drawing" width="200"/>
 
 ---
 
@@ -50,6 +57,11 @@ revealOptions:
 - Compartir, intercambiar y buscar archivos de cualquier tipo.
 - Telefonía VoIP para hacer más eficiente la transmisión de datos en tiempo real, como Skype.
 - Sistemas de ficheros distribuidos, como CFS o Freenet.
+
+---
+
+### Aplicaciones
+
 - Sistemas para garantizar anonimato, como i2p.
 - Cálculos científicos que procesen enormes bases de datos.
 - Monedas virtuales.
@@ -76,15 +88,16 @@ revealOptions:
 
 ### Clasificación
 
+Se pueden clasificar según:
+
+- **Grado de centralización**.
+- **Grado de anonimato**.
+
 ---
 
 #### Criterio de clasificación según grado de centralización
 
-- **Centralizadas**.
-- **Mixtas**.
-- **Puras**.
-
-![Topologia de Paul Baran](./img/Topologias_de_red.png)
+<img src="./img/Topologias_de_red.png" alt="drawing" width="750"/>
 
 ---
 
@@ -101,7 +114,7 @@ revealOptions:
 
 - Es un protocolo diseñado para el **intercambio de archivos P2P**.
 - Transferencias de **archivos grandes**.
-- Diseñado por Bram Cohen en 2001
+- Diseñado por Bram Cohen en 2001.
 - Usado por **170 millones de personas** cada mes.
 - Mueve hasta el **40% del tráfico** mundial de Internet.
 - Propia **criptomoneda**.
@@ -114,27 +127,40 @@ revealOptions:
 - Para subir un archivo hay que subir su **`torrent`**.
 - Se crea un nodo BitTorrent (**semilla**).
 - Para descargarlo creamos otro nodo (**cliente**).
-- Un archivo se distribuye en **pequeñas partes**.
+
+<img src="./img/bittorrent-swarm.png" alt="drawing" width="450"/>
+
 
 ---
 
 ## BitTorrent
 
+- Un archivo se distribuye en **pequeñas partes**.
 - La **semilla original** no tiene que enviar las partes a todos los usuarios.
-- Las partes no se descargan secuencialmente. BitTorrent las **reordena** y comprueba cuáles se han descargados.
+- Las partes no se descargan secuencialmente. BitTorrent las **reordena** y comprueba cuáles se han descargado.
+
+
+---
+
+## BitTorrent
+
 - Cada parte tiene el **mismo tamaño**.
 - Cada parte se **transmite** de una sola vez.
+- Podemos detener la descarga y reanudarla **sin perder información**.
+- Cuando se descarga el archivo, el cliente se convierte en **semilla**.
 
+<img src="./img/archivo_div.png" alt="drawing" width="100"/>
 
 
 ---
 
 ## BitTorrent
 
-- Podemos detener la descarga y reanudarla **sin perder información**.
-- Cuando se descarga el archivo, el cliente se convierte en **semilla**.
 - Cada parte del archivo está protegida por un **hash criptográfico**.
 - Se pueden detectar las **modificaciones** gracias a la semilla original.
+
+<img src="./img/seguridad.png" alt="drawing" width="450"/>
+
 
 ---
 
@@ -158,6 +184,12 @@ Sirven para abrir el archivo `.torrent` y descargar su información. Hay dos tip
 
 ---
 
+## Programas clientes
+
+<img src="./img/aplicaciones.jpg" alt="drawing" width="750"/>
+
+---
+
 ## Estructura de una BitTorrent
 
 - **Peers**: usuarios.
@@ -176,12 +208,14 @@ Sirven para abrir el archivo `.torrent` y descargar su información. Hay dos tip
 
 ---
 
-## Mecánica del funcionamiento de BitTorrent
-
 <section style="text-align: left;">
 
 
 4.Cuando el **peer** sabe dónde tiene que buscar las partes, se comunica con otros mediante **sockets TCP o UDP**. El archivo comienza a **descargarse**. Cada parte descargada se comparte con otros peers.
+
+<section style="text-align: center;">
+
+<img src="./img/Socket.png" alt="drawing" width="450"/>
 
 ---
 
@@ -203,15 +237,21 @@ Sirven para abrir el archivo `.torrent` y descargar su información. Hay dos tip
 
 ---
 
+<section style="text-align: center;">
+
 ### Clases
 
+<section style="text-align: left;">
+
 Los trackers se dividen en dos clases:
+
 - **Privados**: requieren que los peers sean usuarios registrados en un sitio web.
 - **Públicos**: cualquiera puede comunicarse con ellos.
 
 ---
 
-![](./img/bittorrent.jpg)
+<img src="./img/bittorrent.jpg" alt="drawing" width="600"/>
+
 
 ---
 
