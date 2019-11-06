@@ -1,4 +1,8 @@
 ---
+marp: true
+
+
+---
 title: BitTorrent
 revealOptions:
     transition: 'Fade'
@@ -19,26 +23,55 @@ revealOptions:
 
 ## Introducción
 
+- Redes Peer-to-peer.
+- BitTorrent
+- Archivos Torrent
+- Trackers
+
+---
+
+![](./img/peer-network-computers-sharing-670x335.jpg)
 
 ---
 
 ## Peer-to-peer
 
+- Una red **peer-to-peer** (P2P) es una red de ordenadores en la que todos o algunos aspectos funcionan sin clientes ni servidores, sino con una serie de nodos que son iguales entre sí, esto es, actúan simultáneamente como clientes y servidores entre ellos.
+- Aprovechan, administran y optimizan el uso del ancho de banda de los demás usuarios de la red por la conectividad de los mismos, obteniendo así más rendimiento.
+
+---
+
+![](./img/p2p.png)
+
 ---
 
 ### Aplicaciones
 
+- Compartir, intercambiar y buscar archivos de cualquier tipo.
+- Telefonía VoIP para hacer más eficiente la transmisión de datos en tiempo real, como Skype.
+- Sistemas de ficheros distribuidos, como CFS o Freenet.
+- Sistemas para garantizar anonimato, como i2p.
+- Cálculos científicos que procesen enormes bases de datos.
+- Monedas virtuales.
+- Grabadores de sistemas de CCTV.
 
 ---
 
 ### Características
 
+- Escalabilidad.
+- Robustez.
+- Descentralización.
+- Distribución de costes entre los usuarios.
+- Anonimato.
+- Seguridad.
 
 ---
 
 ### Problemas
 
-
+- **Cómo encontrar un nodo conectado**: se suele solucionar haciendo una conexión a un servidor, que mantiene una lista de las IPs conectadas.
+- **Cómo conectar dos nodos sin dirección IP pública**: los nodos se conectan a través de otro nodo que funciona como proxy. Cualquier nodo con IP pública puede ser escogido como proxy.
 ---
 
 ### Clasificación
@@ -47,11 +80,20 @@ revealOptions:
 
 #### Criterio de clasificación según grado de centralización
 
+- **Centralizadas**.
+- **Mixtas**.
+- **Puras**.
+
+![Topologia de Paul Baran](./img/Topologias_de_red.png)
 
 ---
 
 #### Criterio de clasificación según grado de anonimato
 
+- Sin características de anonimato.
+- Pseudónimo.
+- Red P2P Privada: solo IPs de confianza pueden conectarse.
+- Frient-to-friend: solo IPs conocidas.
 
 ---
 
@@ -145,16 +187,31 @@ Sirven para abrir el archivo `.torrent` y descargar su información. Hay dos tip
 
 ## Archivos Torrent
 
+- Los **archivos torrent** almacenan metadatos sobre archivos y carpetas que se van a distribuir y ser usados por un cliente de BitTorrent.
+- Un **torrent** es información acerca de un archivo de destino. Funcionan dividiendo el archivo de destino en pequeños fragmentos de información localizados en hosts diferentes.
+
+---
+
+![](./img/archivo_torrent.jpg)
 
 ---
 
 ## Trackers
 
+- Un **tracker** de BitTorrent es un servidor especial que contiene la información necesaria para que los peers se conecten con otros peers asistiendo la comunicación entre ellos usando el protocolo bitTorrent.
+- Son el único punto de encuentro al cual los clientes necesitan conectarse.
 
 ---
 
 ### Clases
 
+Los trackers se dividen en dos clases:
+- **Privados**: requieren que los peers sean usuarios registrados en un sitio web.
+- **Públicos**: cualquiera puede comunicarse con ellos.
+
+---
+
+![](./img/bittorrent.jpg)
 
 ---
 
