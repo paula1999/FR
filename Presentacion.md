@@ -97,6 +97,15 @@ Se pueden clasificar según:
 
 #### Criterio de clasificación según grado de centralización
 
+- **Centralizadas**.
+- **Mixtas**.
+- **Puras**.
+
+---
+
+#### Criterio de clasificación según grado de centralización
+
+
 <img src="./img/Topologias_de_red.png" alt="drawing" width="750"/>
 
 ---
