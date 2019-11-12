@@ -199,7 +199,7 @@ Sirven para abrir el archivo `.torrent` y descargar su información. Hay dos tip
 
 ---
 
-## Estructura de una BitTorrent
+## Estructura de una red BitTorrent
 
 - **Peers**: usuarios.
 - **Leechers**: usuarios que están descargando un archivo o los usuarios que descargan archivos pero no los comparten.
