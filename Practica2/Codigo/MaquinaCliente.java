@@ -86,9 +86,7 @@ public class MaquinaCliente {
                 outPrint.flush();
                 contador--;
            }
-
-           System.out.println("he acabao");
-		
+           
 			socketServicio.close();
                         
 			// Excepciones:
