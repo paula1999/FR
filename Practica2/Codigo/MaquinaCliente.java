@@ -12,7 +12,8 @@ public class MaquinaCliente {
 	public static void main(String[] args) {
 		
 		String buferEnvio;
-		String buferRecepcion;
+        String buferRecepcion;
+        String fin_oper = "FIN_OPERACION";
 		
 		// Nombre del host donde se ejecuta el servidor:
 		String host="localhost";
@@ -61,30 +62,35 @@ public class MaquinaCliente {
             
             int longitud;
             String menu;
-            int contador = 3;
+            boolean operacion_acabada = false;
             
-            while(contador > 0){
+            while(!operacion_acabada){
                 longitud = 0;
                 menu = "";
 
-                buferRecepcion = inReader.readLine();
-                String respuesta = new String (buferRecepcion);
-                longitud += buferRecepcion.length();
-                menu = menu.concat(respuesta);
+                while((buferRecepcion = inReader.readLine()) != null){
+                    String respuesta = new String (buferRecepcion);
+                    longitud += buferRecepcion.length();
+                    menu = menu.concat(respuesta);
+                }
                 
-                System.out.println(menu);
-                System.out.println("Recibidos " + longitud + " bytes: ");
-                System.out.println("Teclee opcion");
+                if (menu == fin_oper){
+                    operacion_acabada = true;
+                }
+                else{
+                    System.out.println(menu);
+                    System.out.println("Recibidos " + longitud + " bytes: ");
+                    System.out.println("Teclee opcion");
 
-                isr = new InputStreamReader(System.in);
-                buferteclado = new BufferedReader (isr);
+                    isr = new InputStreamReader(System.in);
+                    buferteclado = new BufferedReader (isr);
 
-                buferEnvio = buferteclado.readLine();
+                    buferEnvio = buferteclado.readLine();
 
-                outPrint.flush();
-                outPrint.println(buferEnvio);
-                outPrint.flush();
-                contador--;
+                    outPrint.flush();
+                    outPrint.println(buferEnvio);
+                    outPrint.flush();
+                }
            }
            
 			socketServicio.close();
