@@ -48,30 +48,46 @@ public class MaquinaCliente {
                         
             //            System.out.println("Datos enviados.");
                         
-			System.out.println("Mostrando menu");
+            System.out.println("Pulsa 1 para comenzar");
+
+            InputStreamReader isr = new InputStreamReader(System.in);
+            BufferedReader buferteclado = new BufferedReader (isr);
+
+            buferEnvio = buferteclado.readLine();
+
+            outPrint.flush();
+            outPrint.println(buferEnvio);
+            outPrint.flush();
             
             int longitud;
             String menu;
+            int contador = 3;
             
-            //while(true){
+            while(contador > 0){
                 longitud = 0;
                 menu = "";
-                while ((buferRecepcion = inReader.readLine()) != null){
-                    longitud += buferRecepcion.length();
-                    menu = menu.concat(buferRecepcion);
-                }
+
+                buferRecepcion = inReader.readLine();
+                String respuesta = new String (buferRecepcion);
+                longitud += buferRecepcion.length();
+                menu = menu.concat(respuesta);
                 
                 System.out.println(menu);
                 System.out.println("Recibidos " + longitud + " bytes: ");
                 System.out.println("Teclee opcion");
 
-                InputStreamReader isr = new InputStreamReader(System.in);
-                BufferedReader buferteclado = new BufferedReader (isr);
+                isr = new InputStreamReader(System.in);
+                buferteclado = new BufferedReader (isr);
 
                 buferEnvio = buferteclado.readLine();
 
+                outPrint.flush();
                 outPrint.println(buferEnvio);
-           //}
+                outPrint.flush();
+                contador--;
+           }
+
+           System.out.println("he acabao");
 		
 			socketServicio.close();
                         

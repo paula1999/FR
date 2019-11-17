@@ -38,19 +38,15 @@ public class ProcesadorMaquina {
             // Obtiene los flujos de escritura/lectura
 			inReader = new BufferedReader (new InputStreamReader (socketServicio.getInputStream()));
             outPrinter = new PrintWriter (socketServicio.getOutputStream(), true);
-            
-            // Mensaje de comienzo
-            datosEnviar = comienzo();
-
-            outPrinter.flush();
-            outPrinter.println(datosEnviar);
-            outPrinter.flush();
 
 			// Recibe la respuesta:
             datosRecibidos = inReader.readLine();
             respuesta = new String (datosRecibidos);
 
-            while (respuesta != "1"){
+            System.out.println(respuesta);
+
+            /*while (respuesta != "1"){
+                System.out.println("HE ENTRAO");
                 datosEnviar = comienzo();
 
                 outPrinter.flush();
@@ -60,10 +56,11 @@ public class ProcesadorMaquina {
                 // Recibe la respuesta:
                 datosRecibidos = inReader.readLine();
                 respuesta = new String (datosRecibidos);
-            }
+            }*/
 
             // Mensaje de descuento
             datosEnviar = estudiante();
+            System.out.println(datosEnviar);
 
             outPrinter.flush();
             outPrinter.println(datosEnviar);
@@ -87,17 +84,17 @@ public class ProcesadorMaquina {
             datosRecibidos = inReader.readLine();
             respuesta = new String (datosRecibidos);
 
-            while (respuesta != "0" && respuesta != "1"){
+            /*while (respuesta != "0" && respuesta != "1"){
                 datosRecibidos = inReader.readLine();
                 respuesta = new String (datosRecibidos);
-            }
+            }*/
 
-            if (respuesta == "1")
+            /*if (respuesta == "1")
                 bebida = true;
             else if (respuesta == "0")
-                comida = true;
+                comida = true;*/
 
-            if (bebida){
+            //if (bebida){
                 // Mensaje de menu bebida
                 datosEnviar = menu_bebida();
 
@@ -143,8 +140,8 @@ public class ProcesadorMaquina {
                         }
 
                 }
-            }
-            else if (comida){
+            //}
+            if (comida){
                 // Mensaje de menu comida
                 datosEnviar = menu_comida();
 
