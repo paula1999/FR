@@ -63,15 +63,23 @@ public class MaquinaCliente {
             int longitud;
             String menu;
             boolean operacion_acabada = false;
+            String fin_lectura = "FIN_PARRAFO";
+            int num_lineas = 0;
             
             while(!operacion_acabada){
                 longitud = 0;
                 menu = "";
 
-                while((buferRecepcion = inReader.readLine()) != null){
-                    String respuesta = new String (buferRecepcion);
+                buferRecepcion = inReader.readLine();
+                String respuesta = new String (buferRecepcion);
+                num_lineas = Integer.parseInt(respuesta);
+        
+                for (int i = 0; i < num_lineas; ++i){
+                    buferRecepcion = inReader.readLine();
+                     respuesta = new String (buferRecepcion);
                     longitud += buferRecepcion.length();
                     menu = menu.concat(respuesta);
+                    menu = menu.concat("\n");
                 }
                 
                 if (menu == fin_oper){

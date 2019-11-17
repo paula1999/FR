@@ -32,7 +32,7 @@ public class ProcesadorMaquina {
 
 		try {
             String respuesta;
-            boolean descuento = false, comida = false, bebida = false;
+            boolean descuento = false, comida = false, bebida = false, seleccion = true;
             int opcion;
 
             // Obtiene los flujos de escritura/lectura
@@ -45,9 +45,10 @@ public class ProcesadorMaquina {
             opcion = Integer.parseInt(respuesta);
 
             while (opcion != 1){
-                System.out.println("HE ENTRAO");
                 datosEnviar = comienzo();
 
+                outPrinter.flush();
+                outPrinter.println("1");
                 outPrinter.flush();
                 outPrinter.println(datosEnviar);
                 outPrinter.flush();
@@ -55,11 +56,14 @@ public class ProcesadorMaquina {
                 // Recibe la respuesta:
                 datosRecibidos = inReader.readLine();
                 respuesta = new String (datosRecibidos);
+                opcion = Integer.parseInt(respuesta);
             }
 
             // Mensaje de descuento
             datosEnviar = estudiante();
 
+            outPrinter.flush();
+            outPrinter.println("1");
             outPrinter.flush();
             outPrinter.println(datosEnviar);
             outPrinter.flush();
@@ -76,6 +80,8 @@ public class ProcesadorMaquina {
             datosEnviar = menu();
 
             outPrinter.flush();
+            outPrinter.println("1");
+            outPrinter.flush();
             outPrinter.println(datosEnviar);
             outPrinter.flush();
 
@@ -85,8 +91,17 @@ public class ProcesadorMaquina {
             opcion = Integer.parseInt(respuesta);
 
             while (opcion != 0 && opcion != 1){
+                datosEnviar = menu();
+
+                outPrinter.flush();
+                outPrinter.println("1");
+                outPrinter.flush();
+                outPrinter.println(datosEnviar);
+                outPrinter.flush();
+
                 datosRecibidos = inReader.readLine();
                 respuesta = new String (datosRecibidos);
+                opcion = Integer.parseInt(respuesta);
             }
 
             if (opcion == 1)
@@ -99,17 +114,26 @@ public class ProcesadorMaquina {
                 datosEnviar = menu_bebida();
 
                 outPrinter.flush();
+                outPrinter.println("5");
+                outPrinter.flush();
                 outPrinter.println(datosEnviar);
                 outPrinter.flush();
 
                 // Recibe la respuesta:
                 datosRecibidos = inReader.readLine();
                 respuesta = new String (datosRecibidos);
+                //opcion = Integer.parseInt(respuesta);
+
+                seleccion = true;
+                do{
 
                 switch(respuesta){
                     case "0":
+                        seleccion = true;
                         datosEnviar = tipo_cafe();
 
+                        outPrinter.flush();
+                        outPrinter.println("7");
                         outPrinter.flush();
                         outPrinter.println(datosEnviar);
                         outPrinter.flush();
@@ -123,6 +147,8 @@ public class ProcesadorMaquina {
                             datosEnviar = tipo_cafe();
 
                             outPrinter.flush();
+                            outPrinter.println("7");
+                            outPrinter.flush();
                             outPrinter.println(datosEnviar);
                             outPrinter.flush();
 
@@ -134,21 +160,78 @@ public class ProcesadorMaquina {
 
                         if (opcion <= 5){
                             datosEnviar = servir();
+
+                            outPrinter.flush();
+                            outPrinter.println("1");
                             outPrinter.flush();
                             outPrinter.println(datosEnviar);
                             outPrinter.flush();
                         }
 
+                        break;
+                    case "1":
+                        seleccion = true;
+                        datosEnviar = servir();
+
+                        outPrinter.flush();
+                        outPrinter.println("1");
+                        outPrinter.flush();
+                        outPrinter.flush();
+                        outPrinter.println(datosEnviar);
+                        outPrinter.flush();
+
+                        break;
+                    case "2":
+                        seleccion = true;
+                        datosEnviar = servir();
+
+                        outPrinter.flush();
+                        outPrinter.println("1");
+                        outPrinter.flush();
+                        outPrinter.flush();
+                        outPrinter.println(datosEnviar);
+                        outPrinter.flush();
+
+                        break;
+                    case "3":
+                        seleccion = true;
+                        datosEnviar = servir();
+
+                        outPrinter.flush();
+                        outPrinter.println("1");
+                        outPrinter.flush();
+                        outPrinter.flush();
+                        outPrinter.println(datosEnviar);
+                        outPrinter.flush();
+
+                        break;
+                    default:
+                        seleccion = false;
+                        // Mensaje de menu bebida
+                        datosEnviar = menu_bebida();
+
+                        outPrinter.flush();
+                        outPrinter.println("5");
+                        outPrinter.flush();
+                        outPrinter.println(datosEnviar);
+                        outPrinter.flush();
+
+                        // Recibe la respuesta:
+                        datosRecibidos = inReader.readLine();
+                        respuesta = new String (datosRecibidos);
                 }
+            }while(!seleccion);
             }
             else if (comida){
                 // Mensaje de menu comida
                 datosEnviar = menu_comida();
 
                 outPrinter.flush();
+                outPrinter.println("5");
+                outPrinter.flush();
+                outPrinter.flush();
                 outPrinter.println(datosEnviar);
                 outPrinter.flush();
-
                 // Recibe la respuesta:
                 datosRecibidos = inReader.readLine();
                 respuesta = new String (datosRecibidos);
@@ -174,19 +257,19 @@ public class ProcesadorMaquina {
     }
 
     private String menu_bebida(){
-        return "BEBIDA:\nCafe: 0\nPoca-cola: 1\nAgua: 2\nFRanta naranja: 3\n";
+        return "BEBIDA:\nCafe: 0\nPoca-cola: 1\nAgua: 2\nFRanta naranja: 3";
     }
 
     private String menu_comida(){
-        return "COMIDA:\nFRuta: 0\nKit kot: 1\nGalletas Newton: 2\nSandwich: 3\n";
+        return "COMIDA:\nFRuta: 0\nKit kot: 1\nGalletas Newton: 2\nSandwich: 3";
     }
 
     private String tipo_cafe(){
-        return "TIPOS DE CAFE:\nSolo/Expresso: 0\nCortado: 1\nLargo: 2\nCon leche: 3\nBombón: 4\nCapuchino: 5\n";
+        return "TIPOS DE CAFE:\nSolo/Expresso: 0\nCortado: 1\nLargo: 2\nCon leche: 3\nBombón: 4\nCapuchino: 5";
     }
 
     private String servir(){
-        return "Aqui tiene su pedido\n";
+        return "***********Aqui tiene su pedido***********";
     }
     
 }
