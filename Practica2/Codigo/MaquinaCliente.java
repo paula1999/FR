@@ -49,58 +49,65 @@ public class MaquinaCliente {
                         
             //            System.out.println("Datos enviados.");
                         
-            System.out.println("Pulsa 1 para comenzar");
-
+            int longitud;
+            String menu;
+            boolean operacion_acabada, parar = false;
+            String fin_lectura = "***********Aqui tiene su pedido***********";
+            int num_lineas = 0;
             InputStreamReader isr = new InputStreamReader(System.in);
             BufferedReader buferteclado = new BufferedReader (isr);
 
-            buferEnvio = buferteclado.readLine();
+            while (!parar){
+                operacion_acabada = false;
 
-            outPrint.flush();
-            outPrint.println(buferEnvio);
-            outPrint.flush();
-            
-            int longitud;
-            String menu;
-            boolean operacion_acabada = false;
-            String fin_lectura = "FIN_PARRAFO";
-            int num_lineas = 0;
-            
-            while(!operacion_acabada){
-                longitud = 0;
-                menu = "";
+                outPrint.flush();
+                System.out.println("Bienvenido a la máquina expendedora, pulsa 1 para comenzar");
+                outPrint.flush();
 
-                buferRecepcion = inReader.readLine();
-                String respuesta = new String (buferRecepcion);
-                num_lineas = Integer.parseInt(respuesta);
-        
-                for (int i = 0; i < num_lineas; ++i){
+                buferEnvio = buferteclado.readLine();
+
+                outPrint.flush();
+                outPrint.println(buferEnvio);
+                outPrint.flush();
+            
+                while(!operacion_acabada){
+                    longitud = 0;
+                    menu = "";
+
                     buferRecepcion = inReader.readLine();
-                     respuesta = new String (buferRecepcion);
-                    longitud += buferRecepcion.length();
-                    menu = menu.concat(respuesta);
-                    menu = menu.concat("\n");
-                }
-                
-                if (menu == fin_oper){
-                    operacion_acabada = true;
-                }
-                else{
-                    System.out.println(menu);
-                    System.out.println("Recibidos " + longitud + " bytes: ");
-                    System.out.println("Teclee opcion");
+                    String respuesta = new String (buferRecepcion);
+                    num_lineas = Integer.parseInt(respuesta);
+            
+                    for (int i = 0; i < num_lineas; ++i){
+                        buferRecepcion = inReader.readLine();
+                        respuesta = new String (buferRecepcion);
+                        longitud += buferRecepcion.length();
+                        menu = menu.concat(respuesta);
+                        menu = menu.concat("\n");
+                    }
+                    
+                    // Si ha acabado el pedido, volver al inicio
+                    if (respuesta.equals(fin_lectura)){
+                        System.out.println(menu);
+                        operacion_acabada = true;
+                    }
+                    else{
+                        System.out.println(menu);
+                        System.out.println("Recibidos " + longitud + " bytes: ");
+                        System.out.println("Teclee opcion");
 
-                    isr = new InputStreamReader(System.in);
-                    buferteclado = new BufferedReader (isr);
+                        isr = new InputStreamReader(System.in);
+                        buferteclado = new BufferedReader (isr);
 
-                    buferEnvio = buferteclado.readLine();
+                        buferEnvio = buferteclado.readLine();
 
-                    outPrint.flush();
-                    outPrint.println(buferEnvio);
-                    outPrint.flush();
+                        outPrint.flush();
+                        outPrint.println(buferEnvio);
+                        outPrint.flush();
+                    }
                 }
-           }
-           
+            }
+
 			socketServicio.close();
                         
 			// Excepciones:
