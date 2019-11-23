@@ -39,17 +39,16 @@ public class ProcesadorMaquina {
 			inReader = new BufferedReader (new InputStreamReader (socketServicio.getInputStream()));
             outPrinter = new PrintWriter (socketServicio.getOutputStream(), true);
 
-			// Recibe la respuesta:
+			// Recibe la respuesta y la transforma en entero:
             datosRecibidos = inReader.readLine();
             respuesta = new String (datosRecibidos);
             opcion = Integer.parseInt(respuesta);
 
-            while (opcion != 1){
+            while (opcion != 1){    // Mientras no quiera comenzar
                 datosEnviar = comienzo();
 
                 outPrinter.flush();
                 outPrinter.println("1");
-                outPrinter.flush();
                 outPrinter.println(datosEnviar);
                 outPrinter.flush();
 
@@ -59,12 +58,11 @@ public class ProcesadorMaquina {
                 opcion = Integer.parseInt(respuesta);
             }
 
-            // Mensaje de descuento
+            // Mensaje para ver si es estudiante o no
             datosEnviar = estudiante();
 
             outPrinter.flush();
             outPrinter.println("1");
-            outPrinter.flush();
             outPrinter.println(datosEnviar);
             outPrinter.flush();
 
@@ -73,7 +71,7 @@ public class ProcesadorMaquina {
             respuesta = new String (datosRecibidos);
             opcion = Integer.parseInt(respuesta);
 
-            if (opcion == 1)
+            if (opcion == 1) // Si es estudiante
                 descuento = true;
             
             // Mensaje de menu
@@ -81,7 +79,6 @@ public class ProcesadorMaquina {
 
             outPrinter.flush();
             outPrinter.println("1");
-            outPrinter.flush();
             outPrinter.println(datosEnviar);
             outPrinter.flush();
 
@@ -90,12 +87,11 @@ public class ProcesadorMaquina {
             respuesta = new String (datosRecibidos);
             opcion = Integer.parseInt(respuesta);
 
-            while (opcion != 0 && opcion != 1){
+            while (opcion != 0 && opcion != 1){ // Ni comida ni bebida, número erróneo
                 datosEnviar = menu();
 
                 outPrinter.flush();
                 outPrinter.println("1");
-                outPrinter.flush();
                 outPrinter.println(datosEnviar);
                 outPrinter.flush();
 
@@ -104,9 +100,9 @@ public class ProcesadorMaquina {
                 opcion = Integer.parseInt(respuesta);
             }
 
-            if (opcion == 1)
+            if (opcion == 1) // Bebida
                 bebida = true;
-            else if (opcion == 0)
+            else if (opcion == 0) // Comida
                 comida = true;
 
             if (bebida){
@@ -115,40 +111,23 @@ public class ProcesadorMaquina {
 
                 outPrinter.flush();
                 outPrinter.println("5");
-                outPrinter.flush();
                 outPrinter.println(datosEnviar);
                 outPrinter.flush();
 
                 // Recibe la respuesta:
                 datosRecibidos = inReader.readLine();
                 respuesta = new String (datosRecibidos);
-                //opcion = Integer.parseInt(respuesta);
 
                 seleccion = true;
+
                 do{
-
-                switch(respuesta){
-                    case "0":
-                        seleccion = true;
-                        datosEnviar = tipo_cafe();
-
-                        outPrinter.flush();
-                        outPrinter.println("7");
-                        outPrinter.flush();
-                        outPrinter.println(datosEnviar);
-                        outPrinter.flush();
-
-                        // Recibe la respuesta:
-                        datosRecibidos = inReader.readLine();
-                        respuesta = new String (datosRecibidos);
-                        opcion = Integer.parseInt(respuesta);
-
-                        while (opcion > 5){
+                    switch(respuesta){
+                        case "0": // Cafe
+                            seleccion = true;
                             datosEnviar = tipo_cafe();
 
                             outPrinter.flush();
                             outPrinter.println("7");
-                            outPrinter.flush();
                             outPrinter.println(datosEnviar);
                             outPrinter.flush();
 
@@ -156,71 +135,78 @@ public class ProcesadorMaquina {
                             datosRecibidos = inReader.readLine();
                             respuesta = new String (datosRecibidos);
                             opcion = Integer.parseInt(respuesta);
-                        }
 
-                        if (opcion <= 5){
+                            // Mientras elija una opción errónea
+                            while (opcion > 5){
+                                datosEnviar = tipo_cafe();
+
+                                outPrinter.flush();
+                                outPrinter.println("7");
+                                outPrinter.println(datosEnviar);
+                                outPrinter.flush();
+
+                                // Recibe la respuesta:
+                                datosRecibidos = inReader.readLine();
+                                respuesta = new String (datosRecibidos);
+                                opcion = Integer.parseInt(respuesta);
+                            }
+
+                            // Elige el tipo de cafe
+                            if (opcion <= 5){
+                                datosEnviar = servir();
+
+                                outPrinter.flush();
+                                outPrinter.println("1");
+                                outPrinter.println(datosEnviar);
+                                outPrinter.flush();
+                            }
+
+                            break;
+                        case "1": // Poca-cola
+                            seleccion = true;
                             datosEnviar = servir();
 
                             outPrinter.flush();
                             outPrinter.println("1");
-                            outPrinter.flush();
                             outPrinter.println(datosEnviar);
                             outPrinter.flush();
-                        }
 
-                        break;
-                    case "1":
-                        seleccion = true;
-                        datosEnviar = servir();
+                            break;
+                        case "2": // Agua
+                            seleccion = true;
+                            datosEnviar = servir();
 
-                        outPrinter.flush();
-                        outPrinter.println("1");
-                        outPrinter.flush();
-                        outPrinter.flush();
-                        outPrinter.println(datosEnviar);
-                        outPrinter.flush();
+                            outPrinter.flush();
+                            outPrinter.println("1");
+                            outPrinter.println(datosEnviar);
+                            outPrinter.flush();
 
-                        break;
-                    case "2":
-                        seleccion = true;
-                        datosEnviar = servir();
+                            break;
+                        case "3": // FRanta naranja
+                            seleccion = true;
+                            datosEnviar = servir();
 
-                        outPrinter.flush();
-                        outPrinter.println("1");
-                        outPrinter.flush();
-                        outPrinter.flush();
-                        outPrinter.println(datosEnviar);
-                        outPrinter.flush();
+                            outPrinter.flush();
+                            outPrinter.println("1");
+                            outPrinter.println(datosEnviar);
+                            outPrinter.flush();
 
-                        break;
-                    case "3":
-                        seleccion = true;
-                        datosEnviar = servir();
+                            break;
+                        default: // Opción errónea
+                            seleccion = false;
+                            // Mensaje de menu bebida
+                            datosEnviar = menu_bebida();
 
-                        outPrinter.flush();
-                        outPrinter.println("1");
-                        outPrinter.flush();
-                        outPrinter.flush();
-                        outPrinter.println(datosEnviar);
-                        outPrinter.flush();
+                            outPrinter.flush();
+                            outPrinter.println("5");
+                            outPrinter.println(datosEnviar);
+                            outPrinter.flush();
 
-                        break;
-                    default:
-                        seleccion = false;
-                        // Mensaje de menu bebida
-                        datosEnviar = menu_bebida();
-
-                        outPrinter.flush();
-                        outPrinter.println("5");
-                        outPrinter.flush();
-                        outPrinter.println(datosEnviar);
-                        outPrinter.flush();
-
-                        // Recibe la respuesta:
-                        datosRecibidos = inReader.readLine();
-                        respuesta = new String (datosRecibidos);
-                }
-            }while(!seleccion);
+                            // Recibe la respuesta:
+                            datosRecibidos = inReader.readLine();
+                            respuesta = new String (datosRecibidos);
+                    }
+                }while(!seleccion);
             }
             else if (comida){
                 // Mensaje de menu comida
@@ -228,16 +214,72 @@ public class ProcesadorMaquina {
 
                 outPrinter.flush();
                 outPrinter.println("5");
-                outPrinter.flush();
-                outPrinter.flush();
                 outPrinter.println(datosEnviar);
                 outPrinter.flush();
+
                 // Recibe la respuesta:
                 datosRecibidos = inReader.readLine();
                 respuesta = new String (datosRecibidos);
+
+                seleccion = true;
+                do{
+                    switch(respuesta){
+                        case "0": // FRuta
+                            seleccion = true;
+                            datosEnviar = servir();
+
+                            outPrinter.flush();
+                            outPrinter.println("1");
+                            outPrinter.println(datosEnviar);
+                            outPrinter.flush();
+
+                            break;
+                        case "1": // Kit-kot
+                            seleccion = true;
+                            datosEnviar = servir();
+
+                            outPrinter.flush();
+                            outPrinter.println("1");
+                            outPrinter.println(datosEnviar);
+                            outPrinter.flush();
+
+                            break;
+                        case "2": // Galletas Newton 
+                            seleccion = true;
+                            datosEnviar = servir();
+
+                            outPrinter.flush();
+                            outPrinter.println("1");
+                            outPrinter.println(datosEnviar);
+                            outPrinter.flush();
+
+                            break;
+                        case "3": // Sandwich
+                            seleccion = true;
+                            datosEnviar = servir();
+
+                            outPrinter.flush();
+                            outPrinter.println("1");
+                            outPrinter.println(datosEnviar);
+                            outPrinter.flush();
+
+                            break;
+                        default: // Opción errónea
+                            seleccion = false;
+                            // Mensaje de menu comida
+                            datosEnviar = menu_comida();
+
+                            outPrinter.flush();
+                            outPrinter.println("5");
+                            outPrinter.println(datosEnviar);
+                            outPrinter.flush();
+
+                            // Recibe la respuesta:
+                            datosRecibidos = inReader.readLine();
+                            respuesta = new String (datosRecibidos);
+                    }
+                }while(!seleccion); // Mientras elija la opción errónea
             }
-
-
 		} catch (IOException e) {
 			System.err.println("Error al obtener los flujos de entrada/salida.");
 		}
