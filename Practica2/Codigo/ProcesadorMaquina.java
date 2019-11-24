@@ -6,6 +6,7 @@ import java.util.Random;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.io.InputStreamReader;
+import java.io.FileReader;
 
 public class ProcesadorMaquina {
 	// Referencia a un socket para enviar/recibir las peticiones/respuestas
@@ -74,8 +75,49 @@ public class ProcesadorMaquina {
                 datosRecibidos = inReader.readLine();
                 respuesta = new String (datosRecibidos);
 
-                if (respuesta.equals("1")) // Si es estudiante
-                    descuento = true;
+                if (respuesta.equals("1")){ // Si es estudiante
+                    // descuento = true;
+                    datosEnviar = estudiante2();
+
+                    outPrinter.flush();
+                    outPrinter.println("1");
+                    outPrinter.flush();
+                    outPrinter.println(datosEnviar);
+                    outPrinter.flush();
+
+                    datosRecibidos = inReader.readLine();
+                    respuesta = new String (datosRecibidos);
+
+                    BufferedReader file_reader = new BufferedReader(new FileReader("./log_estudiante.txt"));
+                    String datos_leidos = new String();
+                    String comp = "";
+                    boolean encontrado = false;
+                    while (((datos_leidos = file_reader.readLine()) != null) && !encontrado){
+                        comp = new String(datos_leidos);
+                        if (comp.equals(respuesta)){
+                            descuento = true;
+                            encontrado = true;
+
+                            datosEnviar = DNIaceptado();
+
+                            outPrinter.flush();
+                            outPrinter.println("1");
+                            outPrinter.flush();
+                            outPrinter.println(datosEnviar);
+                            outPrinter.flush();
+                        }
+                    }
+
+                    if (!descuento){
+                        datosEnviar = DNInoaceptado();
+
+                        outPrinter.flush();
+                        outPrinter.println("1");
+                        outPrinter.flush();
+                        outPrinter.println(datosEnviar);
+                        outPrinter.flush();
+                    }
+                }
                 
                 // Mensaje de menu
                 datosEnviar = menu();
@@ -267,6 +309,18 @@ public class ProcesadorMaquina {
 
     private String estudiante(){
         return "Pulsa 1 si eres estudiante, si no, pulsa otra tecla";
+    }
+
+    private String estudiante2(){
+        return "Introduzca su DNI";
+    }
+
+    private String DNIaceptado(){
+        return "DNI reconocido, se aplicará descuento. Pulse cualquier tecla para continuar";
+    }
+
+    private String DNInoaceptado(){
+        return "DNI no reconocido, no se aplicará descuento. Pulse cualquier tecla para continuar";
     }
 
     private String menu(){
