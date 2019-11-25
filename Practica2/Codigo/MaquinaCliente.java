@@ -11,7 +11,7 @@ public class MaquinaCliente {
 	public static void main(String[] args) {
 		String buferEnvio;
         String buferRecepcion;
-        String fin_oper = "FIN_OPERACION";
+        String fin_oper = "0";
 		
 		// Nombre del host donde se ejecuta el servidor:
 		String host="localhost";
@@ -45,14 +45,25 @@ public class MaquinaCliente {
                 operacion_acabada = false;
 
                 outPrint.flush();
-                System.out.println("Bienvenido a la máquina expendedora, pulsa 1 para comenzar");
+                System.out.println("Bienvenido a la máquina expendedora, pulsa 1 para comenzar o 0 para salir");
                 outPrint.flush();
 
                 buferEnvio = buferteclado.readLine();
 
+                if (buferEnvio.equals(fin_oper)){
+                    parar = true;
+                    operacion_acabada = true;
+                }
+
                 outPrint.flush();
                 outPrint.println(buferEnvio);
                 outPrint.flush();
+
+                if (parar){
+                    buferRecepcion = inReader.readLine();
+                    respuesta = new String(buferRecepcion);
+                    System.out.println(respuesta);
+                }
             
                 while(!operacion_acabada){
                     longitud = 0;
