@@ -8,9 +8,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class MaquinaCliente {
-
 	public static void main(String[] args) {
-		
 		String buferEnvio;
         String buferRecepcion;
         String fin_oper = "FIN_OPERACION";
@@ -25,12 +23,9 @@ public class MaquinaCliente {
 		
 		try {
 			// Creamos un socket que se conecte a "hist" y "port":
-			//////////////////////////////////////////////////////
-            // socketServicio= ... (Completar)
             System.out.println("Intentando abrir puerto...");
             socketServicio = new Socket(host,port);
-            System.out.println("Puerto abierto.");
-			//////////////////////////////////////////////////////			
+            System.out.println("Puerto abierto.");			
             
             System.out.println("Estableciendo stream de datos...");
 			                        
@@ -38,22 +33,11 @@ public class MaquinaCliente {
             PrintWriter outPrint = new PrintWriter(socketServicio.getOutputStream(), true);
 
             System.out.println("Stream establecido.");
-			// Si queremos enviar una cadena de caracteres por un OutputStream, hay que pasarla primero
-            // a un array de bytes:
-            
-			//buferEnvio= new String("Al monte del volcan debes ir sin demora");
-		
-			//System.out.println("Enviando datos...");
                         
-            //            outPrint.println(buferEnvio);
-                        
-            //            System.out.println("Datos enviados.");
-                        
-            int longitud;
+            int longitud, num_lineas = 0;
             String menu;
             boolean operacion_acabada, parar = false;
-            String fin_lectura = "***********Aqui tiene su pedido***********";
-            int num_lineas = 0;
+            String fin_lectura = "***********Aqui tiene su pedido***********", respuesta;
             InputStreamReader isr = new InputStreamReader(System.in);
             BufferedReader buferteclado = new BufferedReader (isr);
 
@@ -75,7 +59,7 @@ public class MaquinaCliente {
                     menu = "";
 
                     buferRecepcion = inReader.readLine();
-                    String respuesta = new String (buferRecepcion);
+                    respuesta = new String (buferRecepcion);
                     num_lineas = Integer.parseInt(respuesta);
             
                     for (int i = 0; i < num_lineas; ++i){
@@ -91,6 +75,8 @@ public class MaquinaCliente {
                         System.out.println(menu);
                         operacion_acabada = true;
                     }
+                    // Si quiere volver al menú principal
+                    // COMPLETAR
                     else{
                         System.out.println(menu);
                         System.out.println("Recibidos " + longitud + " bytes: ");
