@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.io.InputStreamReader;
 import java.io.FileReader;
 import java.text.NumberFormat;
+import java.text.ParseException;
 
 public class ProcesadorMaquina {
 	// Referencia a un socket para enviar/recibir las peticiones/respuestas
@@ -27,6 +28,12 @@ public class ProcesadorMaquina {
     String LOGIN_FAIL = "login_fail";
     String EXIT_MENU = "exit_menu";
     String CONT_MENU = "cont_menu";
+    String REQUEST_MENU = "request_menu";
+    String REQUEST_SUCCESS = "success";
+    String REQUEST_ERROR = "error";
+    String REQUEST_FOOD = "request_food";
+    String REQUEST_DRINK = "request_drink";
+    String REQUEST_PRICE = "request_price";
 
 	// Constructor que tiene como parámetro una referencia al socket abierto en por otra clase
 	public ProcesadorMaquina (Socket socketServicio) {
@@ -45,6 +52,8 @@ public class ProcesadorMaquina {
             String respuesta;
             boolean descuento = false, comida, bebida, seleccion = true, seleccion_cafe = true;
             int opcion;
+            double precio;
+            String precio_final;
             fin = false;
 
             // Obtiene los flujos de escritura/lectura
@@ -53,19 +62,21 @@ public class ProcesadorMaquina {
 
             // Comienza el funcionamiento de la maquina
             while (!fin){
-
                 // Recibe la respuesta
-                
                 datosRecibidos = inReader.readLine();
                 respuesta = new String (datosRecibidos);
 
+                // Continuar
                 if (respuesta.equals(CONT_MENU)){
                     fin = false;
                 }
+                // Salir
                 else if (respuesta.equals(EXIT_MENU)){
                     fin = true;
                 }
+                // Login del estudiante
                 else if (respuesta.equals(TRY_LOGIN)){
+                    // Leemos respuesta
                     datosRecibidos = inReader.readLine();
                     respuesta = new String (datosRecibidos);
                               
@@ -91,8 +102,79 @@ public class ProcesadorMaquina {
                         outPrinter.println(datosEnviar);
                         outPrinter.flush();
                     }
+                }
+                else if (respuesta.equals(REQUEST_DRINK)){
+                    // Enviamos el menu de la bebida
+                    datosEnviar = menu_bebida();
 
-                    fin = true; //Quitar cuando haya mas cosas despues del login
+                    outPrinter.flush();
+                    outPrinter.println("5");
+                    outPrinter.flush();
+                    outPrinter.println(datosEnviar);
+                    outPrinter.flush();
+                }
+                else if (respuesta.equals(REQUEST_FOOD)){
+                    // Enviamos el menu de la comida
+                    datosEnviar = menu_comida();
+
+                    outPrinter.flush();
+                    outPrinter.println("5");
+                    outPrinter.flush();
+                    outPrinter.println(datosEnviar);
+                    outPrinter.flush();
+                }
+                else if (respuesta.equals(REQUEST_PRICE)){
+                    // Recibe el menu
+                    datosRecibidos = inReader.readLine();
+                    respuesta = new String (datosRecibidos);
+
+                    // Si es comida
+                    if (respuesta.charAt(0) == '0'){
+                        if (respuesta.charAt(1) == '0'){
+                            // FRuta
+                            precio = 0.40;
+                        }
+                        else if (respuesta.charAt(1) == '1'){
+                            // Kit kot
+                            precio = 1;
+
+                        }
+                        else if (respuesta.charAt(1) == '2'){
+                            // Galletas Newton
+                            precio = 0.80;
+                        }
+                        else{
+                            // Sandwich
+                            precio = 1.30;
+                        }
+                    }
+                    // Si es bebida
+                    else{
+                        if (respuesta.charAt(1) == '0'){
+                            // Cafe
+                            precio = 1;
+                        }
+                        else if (respuesta.charAt(1) == '1'){
+                            // Poca cola
+                            precio = 1.20;
+                        }
+                        else if (respuesta.charAt(1) == '2'){
+                            // Agua
+                            precio = 0.50;
+                        }
+                        else{
+                            // FRanta naranja
+                            precio = 1.20;
+                        }
+                    }
+
+                    // Aplicamos el descuento
+                    precio_final = coste(precio, respuesta.charAt(2));
+
+                    // Enviamos el precio
+                    outPrinter.flush();
+                    outPrinter.println(precio_final);
+                    outPrinter.flush();   
                 }
             }
 
@@ -155,18 +237,32 @@ public class ProcesadorMaquina {
         return "***********Aqui tiene su pedido***********";
     }
     
-    private String coste (double precio, boolean descuento){
+    private String coste (double precio, char descuento){
         NumberFormat money = NumberFormat.getCurrencyInstance(); // Formato de dinero
         double precio_final = precio, porcentaje = (double) 30/100;
         String pedido = new String();
 
         // Aplicamos el descuento, si lo hay
-        if (descuento){
-            precio_final = porcentaje*precio;
+        if (descuento == '1'){
+            precio_final = precio - porcentaje*precio;
         }
 
         pedido = "Precio: " + money.format(precio_final); // Ponemos el precio en formato de dinero
 
         return pedido;
+    }
+
+   
+
+    public void enviar_success (){
+        outPrinter.flush();
+        outPrinter.println("SUCCESS");
+        outPrinter.flush();
+    }
+
+    public void enviar_error (){
+        outPrinter.flush();
+        outPrinter.println("ERROR");
+        outPrinter.flush();
     }
 }
