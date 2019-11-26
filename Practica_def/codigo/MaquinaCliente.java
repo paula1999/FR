@@ -12,20 +12,16 @@ public class MaquinaCliente {
 	public static void main(String[] args) {
 		String buferEnvio;
         String buferRecepcion;
-        String fin_oper = "0";
         String TRY_LOGIN = "try_login";
         String LOGIN_SUCCESS = "login_success";
         String LOGIN_FAIL = "login_fail";
         String EXIT_MENU = "exit_menu";
         String CONT_MENU = "cont_menu";
-        String REQUEST_MENU = "request_menu";
-        String REQUEST_SUCCESS = "success";
-        String REQUEST_ERROR = "error";
         String REQUEST_FOOD = "request_food";
         String REQUEST_DRINK = "request_drink";
         String REQUEST_PRICE;
 		// Nombre del host donde se ejecuta el servidor:
-		String host="localhost";
+		String host = "localhost";
 		// Puerto en el que espera el servidor:
 		int port = 8989;
 		// Socket para la conexión TCP
@@ -45,10 +41,10 @@ public class MaquinaCliente {
             System.out.println("Stream establecido.");
 
             int longitud, opcion, num_lineas;
-            String menu, respuesta, respuesta_teclado, menu_precio;
+            String menu, respuesta, menu_precio;
             InputStreamReader isr = new InputStreamReader(System.in);
             BufferedReader buferteclado = new BufferedReader (isr);
-            boolean salir = false, descuento = false, operacion_acabada, parar = false, repetir = true, parsable = true;
+            boolean salir = false, descuento = false, parsable = true;
 
             while (!salir){
                 ///////////////////////////////////////////////
