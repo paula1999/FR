@@ -38,7 +38,12 @@ Los estados por los que pasa el servidor de acuerdo a los eventos que puedan sur
 
 | **Código** | **Cuerpo** | **Descripción** |
 | :---------: | :--------: | :-------------: |
-| | | |
+| TRY_LOGIN | DNI | Indica al servidor que quiere realizar login usando el DNI |
+| LOGIN_SUCCESS | - | Éxito al realizar el login |
+| LOGIN_FAIL | - | Fallo al realizar el login |
+| EXIT_MENU | - | Salir de la máquina |
+| CONT_MENU | - | Comenzar a usar la máquina |
+|  |  |  |
 
 > Completar tabla
 
