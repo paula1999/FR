@@ -173,13 +173,18 @@ public class MaquinaCliente {
                         }catch(NumberFormatException e){
                             parsable = false;
                         }
-        
+
                         if (parsable)
                             opcion = Integer.parseInt(buferEnvio);
                         else{
                             parsable =  false;
+                            //System.out.println("Error, vuelve a elegir la opcion");
+                        }
+                        if (!parsable || (opcion > 3) || (opcion < 0) || (buferEnvio.length() > 1)) {
+                            parsable =  false;
                             System.out.println("Error, vuelve a elegir la opcion");
                         }
+                        
         
                     } while (!parsable || (opcion > 3) || (opcion < 0) || (buferEnvio.length() > 1));
         
