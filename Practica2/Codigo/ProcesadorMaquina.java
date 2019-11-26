@@ -37,7 +37,7 @@ public class ProcesadorMaquina {
 
 		try {
             String respuesta;
-            boolean descuento = false, comida, bebida, seleccion = true;
+            boolean descuento = false, comida, bebida, seleccion = true, seleccion_cafe = true;
             int opcion;
 
             // Obtiene los flujos de escritura/lectura
@@ -72,7 +72,7 @@ public class ProcesadorMaquina {
                 
                 if (respuesta.equals(fin_oper)){
                     fin = true;
-                    datosEnviar = "Saliendo...";
+                    datosEnviar = "0";
                     outPrinter.flush();
                     outPrinter.println(datosEnviar);
                     outPrinter.flush();
@@ -214,23 +214,55 @@ public class ProcesadorMaquina {
                                     // Recibe la respuesta:
                                     datosRecibidos = inReader.readLine();
                                     respuesta = new String (datosRecibidos);
-                                    opcion = Integer.parseInt(respuesta);
+                                    
+                                    do{
+                                        switch (respuesta){
+                                            case "0": 
+                                                seleccion_cafe = true;
 
-                                    // Mientras elija una opción errónea
-                                    while (opcion > 5){
-                                        datosEnviar = tipo_cafe();
+                                                break;
 
-                                        outPrinter.flush();
-                                        outPrinter.println("7");
-                                        outPrinter.flush();
-                                        outPrinter.println(datosEnviar);
-                                        outPrinter.flush();
+                                            case "1":
+                                                seleccion_cafe = true;
 
-                                        // Recibe la respuesta:
-                                        datosRecibidos = inReader.readLine();
-                                        respuesta = new String (datosRecibidos);
-                                        opcion = Integer.parseInt(respuesta);
-                                    }
+                                                break;
+                                            
+                                            case "2":
+                                                seleccion_cafe = true;
+
+                                                break;
+
+                                            case "3":
+                                                seleccion_cafe = true;
+
+                                                break;
+
+                                            case "4":
+                                                seleccion_cafe = true;
+
+                                                break;
+                                            
+                                            case "5":
+                                                seleccion_cafe = true;
+
+                                                break;
+                                            
+                                            default:
+                                                seleccion_cafe = false;
+                                                datosEnviar = tipo_cafe();
+
+                                                outPrinter.flush();
+                                                outPrinter.println("7");
+                                                outPrinter.flush();
+                                                outPrinter.println(datosEnviar);
+                                                outPrinter.flush();
+
+                                                // Recibe la respuesta:
+                                                datosRecibidos = inReader.readLine();
+                                                respuesta = new String (datosRecibidos);
+
+                                        }
+                                    }while(!seleccion_cafe);
 
                                     // Calculamos el precio
                                     datosEnviar = coste(1, descuento);

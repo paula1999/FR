@@ -62,7 +62,7 @@ public class MaquinaCliente {
                 if (parar){
                     buferRecepcion = inReader.readLine();
                     respuesta = new String(buferRecepcion);
-                    System.out.println(respuesta);
+                    System.out.println("Saliendo...");
                 }
             
                 while(!operacion_acabada){
@@ -86,8 +86,12 @@ public class MaquinaCliente {
                         System.out.println(menu);
                         operacion_acabada = true;
                     }
-                    // Si quiere volver al menú principal
-                    // COMPLETAR
+                    // Si quiere apagar la maquina
+                    else if (respuesta.equals(fin_oper)){
+                        parar = true;
+                        operacion_acabada = true;
+                        System.out.println("Saliendo...");
+                    }
                     else{
                         System.out.println(menu);
                         System.out.println("Recibidos " + longitud + " bytes: ");
