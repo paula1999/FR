@@ -32,7 +32,7 @@ Por último, nos dará nuestro pedido y el importe que hay que pagar.
 
 Los estados por los que pasa el servidor de acuerdo a los eventos que puedan surgir o los mensajes que recibe por parte de los clientes se muestra en la siguiente imagen.
 
-> Insertar diagrama
+![](./img/diagrama_estados.png)
 
 ## Mensajes que intervienen
 
@@ -82,3 +82,5 @@ Precio: 0,84
 Bienvenido a la máquina expendedora, pulsa 1 para comenzar o 0 para salir
 0
 ```
+
+![](./img/ejecucion.png)
