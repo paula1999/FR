@@ -32,7 +32,9 @@ Por último, nos dará nuestro pedido y el importe que hay que pagar.
 
 Los estados por los que pasa el servidor de acuerdo a los eventos que puedan surgir o los mensajes que recibe por parte de los clientes se muestra en la siguiente imagen.
 
+<p>
 ![](./img/diagrama_estados.png)
+</p>
 
 ## Mensajes que intervienen
 
@@ -45,7 +47,7 @@ Los estados por los que pasa el servidor de acuerdo a los eventos que puedan sur
 | `CONT_MENU` | - | Comenzar a usar la máquina |
 | `REQUEST_FOOD` | - | Le pide al servidor el menú de comida |
 | `REQUEST_DRINK` | - | Le pide al servidor el menú de bebida |
-| `REQUEST_PRICE` | - | Le pide al servidor el precio del menú |
+| `REQUEST_PRICE` | Menú | Le pide al servidor el precio del menú |
 
 
 ## Capturas de pantalla de la aplicación
@@ -54,33 +56,6 @@ Primero, compilamos con `make`, luego ejecutamos `java MaquinaServidorIterativo`
 
 En la segunda terminal, nos aparecen los siguientes mensajes:
 
-```
-Intentando abrir puerto...
-Puerto abierto.
-Estableciendo stream de datos...
-Stream establecido.
-Bienvenido a la máquina expendedora, pulsa 1 para comenzar o 0 para salir
-a
-Bienvenido a la máquina expendedora, pulsa 1 para comenzar o 0 para salir
-1
-Pulse 0 si es estudiante, 1 si no
-0
-Introduzca su dni
-12345678
-DNI reconocido, se aplicará descuento
-Pulsa 1 si quieres bebida, 0 si quieres comida
-1
-BEBIDA:
-Cafe: 0
-Poca-cola: 1
-Agua: 2
-FRanta naranja: 3
-
-4
-1
-Precio: 0,84
-Bienvenido a la máquina expendedora, pulsa 1 para comenzar o 0 para salir
-0
-```
-
+<p>
 ![](./img/ejecucion.png)
+</p>
